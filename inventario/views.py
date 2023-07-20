@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Articulo
 
 # Create your views here.
@@ -6,3 +6,11 @@ from .models import Articulo
 def home(request):
     articulo = Articulo.objects.all()
     return render(request, "inventario/home.html", {"articulo" : articulo})
+
+def registrar_articulo(request):
+    
+    descripcion = request.POST["textdescripcion"]
+    precio = request.POST["numprecio"]
+
+    articulo = Articulo.objects.create(descripcion = descripcion, precio = precio)
+    return redirect("/")
