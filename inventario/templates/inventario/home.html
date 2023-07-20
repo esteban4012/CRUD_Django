@@ -1,23 +1,26 @@
 {% extends "./base.html" %}
 
 {% block body %}
-<h1>listado de articulos</h1>
-  <ul>
-    {%for a in articulo %}
-      <li>{{a}}</li>
-    {% endfor %}
-  </ul>
-  <h2>registro de articulos</h2>
-  <form action="/registrarArticulo/" method="post"> {% csrf_token %}
-    <div class="form-group">
-      <input type="text" id="textdescripcion" name="textdescripcion" placeholder="descripcion" maxlength="30">
-    </div>
-    <div>
-      <input type="text" id="numprecio", name="numprecio", placeholder="precio">
-    </div>
-    <div class="">
-      <button type="submit" class="btn btn-success">Guadar</button>
-    </div>
-  </form>
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <h2>Agregar Articulos</h2>
+      <div class="card">
+          <div class="card-body">
+              <form action="/registrarArticulo/" method="post"> {% csrf_token %}
+                  
+                  <div class="form-group">
+                      <input type="text" id="textdescripcion" name="textdescripcion" class="form-control" placeholder="descripcion"  maxlength="100" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" id="numprecio" name="numprecio" class="form-control" placeholder="precio"  min="1" required>
+                  </div>
+                  <div class="d-grid gap-2">
+                      <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 
 {% endblock %}
