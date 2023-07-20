@@ -15,7 +15,11 @@ def registrar_articulo(request):
     articulo = Articulo.objects.create(descripcion = descripcion, precio = precio)
     return redirect("/")
 
-def eliminarArticulo(request, id):
+def editar_articulo(request, id):
+    articulo = Articulo.objects.get(id = id)
+    return render(request, "inventario/edicionArticulo.html", {"articulo" : articulo})
+
+def eliminar_articulo(request, id):
      articulo = Articulo.objects.get(id = id)
      articulo.delete()
-     return redirect('/')
+     return redirect('/') 
