@@ -19,6 +19,18 @@ def editar_articulo(request, id):
     articulo = Articulo.objects.get(id = id)
     return render(request, "inventario/edicionArticulo.html", {"articulo" : articulo})
 
+def edicion_articulo(request):
+    id = request.POST["numid"]
+    descripcion = request.POST["textdescripcion"]
+    precio = request.POST["numprecio"]
+
+    articulo = Articulo.objects.get(id = id)
+    articulo.descripcion = descripcion
+    articulo.precio = precio
+    articulo.save()
+    return redirect("/")
+
+
 def eliminar_articulo(request, id):
      articulo = Articulo.objects.get(id = id)
      articulo.delete()
